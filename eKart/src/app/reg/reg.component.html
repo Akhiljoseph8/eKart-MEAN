@@ -1,0 +1,29 @@
+<div class="d-flex justify-content-center align-items-center w-100 p-5" style="height: 100vh;">
+  <div class="row shadow border rounded">
+      <div class="col-6">
+          <img src="https://i.pinimg.com/originals/d8/8f/a4/d88fa43aa79db7dfd147f459b4c71d00.png" alt="" height="500px" width="500px">
+      </div>
+      <div class="col-6 justify-content-center d-flex align-items-center flex-column px-5">
+          <h4>Registration</h4>
+          <form [formGroup]="regForm" (ngSubmit)="handleSubmit()">
+              <input type="email" formControlName="email" name="em" id="" class="form-control mb-3" placeholder="Enter Your Email">
+              <div *ngIf="regForm.get('email')?.errors && regForm.get('email')?.touched">
+                  *invalid email
+              </div>
+              <input type="text" formControlName="username" name="us" id="" class="form-control mb-3" placeholder="Enter Your username">
+              <div *ngIf="regForm.get('username')?.errors && regForm.get('username')?.touched">
+                  *invalid username
+              </div>
+              <input type="password" formControlName="password" name="ps" id="" class="form-control mb-3" placeholder="Enter Your password">
+              <div *ngIf="regForm.get('password')?.errors && regForm.get('password')?.touched">
+                  *invalid password
+              </div>
+              <div class="d-flex justify-content-between">
+                  <button class="btn btn-success" type="submit" [disabled]="regForm.invalid">Register</button>
+                  <a routerLink="/log">Already User?</a>
+              </div>
+          </form>
+      </div>
+  </div>
+</div>
+

@@ -1,0 +1,14 @@
+@import 'ngx-toastr/toastr';
+
+*{
+    margin: 0px;
+    padding:"0px";
+    box-sizing: border-box;
+   
+    font-family: "Teko", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 200;
+    font-style: normal;
+}
+
+

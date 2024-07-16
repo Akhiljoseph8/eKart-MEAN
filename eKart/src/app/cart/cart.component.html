@@ -1,0 +1,78 @@
+<app-header></app-header>
+
+
+<div class="container-fluid p-3 row">
+    <div class="col-md-9">
+        <h3>Cart Summary</h3>
+        <table class="table p-4 border border-3 p-4 border border-3 border-dark mt-5">
+            <thead>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Price</th>
+                <th>Image</th>
+                <th>Quantity</th>
+                <th>Total Price</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let i of cartItems">
+                    <td>{{i.id}}</td>
+                    <td>{{i.title}}</td>
+                    <td>{{i.price}}</td>
+                    
+                    <td>
+                        <img src="{{i.image}}" 
+                        alt="cartitem" height="200px"></td>
+                    <td>
+                     <button class="btn" (click)="increment(i._id)">+</button>
+                     <input type="number" min="1" max="10" [value]="i.quantity" class="form-control">
+                     <button class="btn" (click)="decrement(i._id)">-</button>
+                    </td>
+                    <td>{{i.totalPrice}}</td>
+                    <td>
+                        <button class="btn" (click)="removeCart(i._id)">
+                            <i class="fa-solid fa-trash" style="color: brown;"></i>
+
+                        </button>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="d-flex justify-content-between mt-3 p-4">
+            <button class="btn btn-danger" (click)="emptyCart()">Empty Cart</button>
+            <button class="btn btn-success" routerLink="/">
+                Shop More
+            </button>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="p-4 border border-3  border-dark mt-5">
+            <h4 >Total Price: {{cartTotal|currency}}</h4>
+
+            <h6 *ngIf="!couponStatus">Click here for
+                <button (click)="changeCouponStatus()">
+                  <i class="fa-solid fa-tag"></i>
+                  Offers
+                </button>
+            </h6>
+            <div class="my-3 d-flex  justify-content-evenly" *ngIf="couponStatus">
+                <ng-container *ngIf="cartTotal>=50 && cartTotal<250 && !couponUseStatus" >
+                 <img (click)="discount5()" src="https://img.freepik.com/premium-vector/coupon-mockup-with-5-percent-off-discount-voucher-gift-coupon-coupon-promotion-sale-vector_662353-255.jpg" alt="" width="200px">
+                </ng-container>
+                <ng-container *ngIf="cartTotal>=250 && cartTotal<500 && !couponUseStatus">
+                    <img (click)="discount20()" src="https://img.freepik.com/premium-vector/coupon-mockup-with-20-percent-off-discount-voucher-gift-coupon-coupon-promotion-sale-vector_662353-252.jpg" alt="" width="200px">
+                   </ng-container>
+                   <ng-container *ngIf="cartTotal>500 && !couponUseStatus">
+                    <img (click)="discount50()" src="https://img.freepik.com/premium-vector/coupon-mockup-with-50-percent-off-discount-voucher-gift-coupon-coupon-promotion-sale-vector_662353-256.jpg" alt="" width="200px">
+                   </ng-container>
+            </div>
+            <ng-container >
+
+            </ng-container>
+            <button class="btn btn-success" (click)="checkout()" routerLink="check">CheckOut</button>
+
+        </div>
+    </div>
+</div>
